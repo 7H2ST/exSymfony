@@ -1,0 +1,47 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <section class="section-create min-h-screen flex flex-col items-center pt-36 px-32">
+        <div class="container-title pb-12">
+            <h1 class="text-4xl font-bold">
+                {% if editBtn %}
+                    Modification du restaurant 🟢
+                {% else %}
+                    Recensement d'un nouveau restaurant 🟢
+                {% endif %}
+            </h1>
+        </div>
+        <div class="container-form w-1/3">
+        {{ form_start(formRestaurant) }}
+            <div class="container-input">
+                <div class="input flex flex-col mb-2">
+                    <label class="pb-1" for="">Nom du restaurant</label>
+                    {{ form_widget(formRestaurant.nom, { 'attr' : {'placeholder' : 'Chez pépé'} }) }}
+                </div>
+                <div class="input flex flex-col mb-2">
+                    <label class="pb-1" for="">Adresse</label>
+                    {{ form_widget(formRestaurant.adresse, { 'attr' : {'placeholder' : '10 Rue du Vieux Palais'} }) }}
+                </div>
+                <div class="input flex flex-col mb-2">
+                    <label class="pb-1" for="">Ville</label>
+                    {{ form_widget(formRestaurant.ville) }}
+                </div>
+                <div class="input flex flex-col mb-2">
+                    <label class="pb-1" for="">Image</label>
+                    {{ form_widget(formRestaurant.image, { 'attr' : {'placeholder' : "URL de l'image"} }) }}
+                </div>
+            </div>
+            <div class="container-btn">
+                <button type="submit">
+                    {% if editBtn %}
+                        Sauvegarder
+                    {% else %}
+                        Confirmer
+                    {% endif %}
+                </button>
+            </div>
+            
+        {{ form_end(formRestaurant) }}
+        </div>
+    </section>
+{% endblock %}

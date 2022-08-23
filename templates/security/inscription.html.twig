@@ -1,0 +1,36 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <section class="section-create min-h-screen flex flex-col items-center pt-36 px-32">
+        <div class="container-title pb-12">
+            <h1 class="text-4xl font-bold">Inscription 🟢</h1>
+        </div>
+        <div class="container-form w-1/3">
+        {{ form_start(form) }}
+            <div class="container-input">
+                <div class="input">
+                    {{ form_row(form.nom, { 'attr' : {'placeholder' : 'Duhamel'}, 'label' : 'Nom' }) }}
+                </div>
+                <div class="input">
+                    {{ form_row(form.prenom, { 'attr' : {'placeholder' : 'Yves'}, 'label' : 'Nom' }) }}
+                </div>
+                <div class="input">
+                    {{ form_row(form.dateNaissance, { 'label' : 'Date de naissance' }) }}
+                </div>
+                <div class="input">
+                    {{ form_row(form.username, { 'attr' : {'placeholder' : "user-1234"}, 'label' : "Nom d'utilisateur" }) }}
+                </div>
+                <div class="input">
+                    {{ form_row(form.password, { 'attr' : {'placeholder' : "****"}, 'label' : 'Mot de passe' }) }}
+                </div>
+            </div>
+            <div class="container-btn">
+                <button type="submit">
+                    S'inscrire
+                </button>
+            </div>
+            
+        {{ form_end(form) }}
+        </div>
+    </section>
+{% endblock %}

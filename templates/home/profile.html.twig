@@ -1,0 +1,63 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <section class="section-welcome pt-32 px-32">
+        <div class="container-title">
+            <h1 class="text-4xl font-bold pb-8">Bienvenue {{ app.user.prenom }} {{ app.user.nom }}</h1>
+        </div>
+        <div class="container-btn flex gap-8">
+            <a href="{{ path('app_editProprietaire') }}" class="btn-1">
+                <span class="btn-text">Modifier mon profil</span>
+            </a>
+            {% for message in app.flashes('message') %}
+                <div class="flex items-center justify-between w-72 px-6 text-sm text-green-700 bg-green-100 rounded-lg">
+                    <span class="font-medium">Succès</span> {{message}}
+                </div>
+            {% endfor %}
+        </div>
+    </section>
+    <section class="section-edit pt-10 px-32">
+        <div class="container-title">
+            <h2 class="text-2xl font-bold pb-8">
+                {% if app.user.restaurants|length > 1 %}
+                    Modifier mes restaurants
+                {% elseif app.user.restaurants|length == 1 %}
+                    Modifier mon restaurant
+                {% else %}
+                {% endif %}
+            </h2>
+        </div>
+        <div class="container-restaurant flex gap-8">
+            {% for restaurant in app.user.restaurants %}
+            <div class="div-restaurant w-3/12">
+                <a href="{{ path('app_edit', {nom: restaurant.nom}) }}">
+                    <div class="container-img">
+                        <img class="rounded" src="{{ restaurant.image }}" alt="">
+                    </div>
+                    <h2 class="text-green-300 font-bold text-3xl py-2"></h2>
+                    <div class="container-infos  mb-2">
+                            <div class="name text-sm"><span class="text-green-600">Nom : </span>{{ restaurant.nom }}</div>
+                            <div class="name text-sm"><span class="text-green-600">Propriétaire : </span>{{ restaurant.proprietaire.nom }} {{ restaurant.proprietaire.prenom }}</div>
+                            <div class="city text-sm"><span class="text-green-600">Adresse : </span>{{ restaurant.adresse }}, {{ restaurant.ville.nom }}</div>
+                    </div>
+                    <div class="container-btn">
+                        <a href="{{ path('app_delete', {nom: restaurant.nom}) }}" class="btn-3">
+                            <span class="btn-text">Supprimer</span>
+                        </a>
+                    </div>
+                </a>
+            </div>
+            {% endfor %}
+        </div>
+    </section>
+    <section class="section-new pt-10 pb-16 px-32">
+        <div class="container-title">
+            <h2 class="text-2xl font-bold pb-8">Recenser un nouveau restaurant</h2>
+        </div>
+        <div class="container-btn">
+            <a href="{{ path('app_create') }}" class="btn-1">
+                <span class="btn-text">Ajouter</span>
+            </a>
+        </div>
+    </section>
+{% endblock %}

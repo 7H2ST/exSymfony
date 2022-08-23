@@ -1,0 +1,28 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <section class="section-connexion min-h-screen flex flex-col items-center pt-56 px-32">
+        <div class="container-title pb-12">
+            <h1 class="text-4xl font-bold">Connexion 🟢</h1>
+        </div>
+        <div class="container-form w-1/3">
+            <form action="{{ path('app_connexion') }}" method="post">
+                <div class="container-input">
+                    <div class="input flex flex-col mb-2">
+                        <label class="pb-1" for="">Nom d'utilisateur</label>
+                        <input placeholder="user-1234" required name="_username" type="text">
+                    </div>
+                    <div class="input flex flex-col mb-2">
+                        <label class="pb-1" for="">Mot de passe</label>
+                        <input placeholder="****" required name="_password" type="password">
+                    </div>
+                </div>
+                <div class="container-btn">
+                    <button type="submit">
+                        Connexion
+                    </button>
+                </div>
+            </form>
+        </div>
+    </section>
+{% endblock %}

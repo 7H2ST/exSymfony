@@ -1,0 +1,25 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <section class="section-restaurants min-h-screen pt-24 px-32 ">
+        <div class="container-title pb-12">
+            <h2 class="text-4xl font-bold"> Restaurants de {{ ville.nom }} 🟢</h2>
+        </div>
+        <div class="container-restaurants flex flex-wrap justify-between gap-y-8">
+            {% for restaurant in ville.restaurants %}
+                <article class=" px-4 py-5 rounded-lg hover:shadow-lg transition-shadow">
+                    <a href="{{ path('app_restaurant', {nom: restaurant.nom}) }}">
+                        <div class="container-img">
+                            <img class="rounded" src="{{ restaurant.image }}" alt="">
+                        </div>
+                        <h2 class="text-green-300 font-bold text-3xl py-2">{{ restaurant.nom }}</h2>
+                        <div class="container-infos pt-">
+                            <div class="name text-sm"><span class="text-green-600">Propriétaire : </span>{{ restaurant.proprietaire.nom }} {{ restaurant.proprietaire.prenom }}</div>
+                            <div class="city text-sm"><span class="text-green-600">Adresse : </span>{{ restaurant.adresse }}, {{ restaurant.ville.nom }}</div>
+                        </div>
+                </a>
+                </article>
+            {% endfor %}
+        </div>
+    </section>
+{% endblock %}

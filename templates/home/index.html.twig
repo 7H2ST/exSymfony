@@ -1,0 +1,53 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <section class="section-hero h-screen px-32 flex flex-col items-center justify-center">
+        <div class="container-title text-center pb-12">
+            <h1 class="text-6xl font-bold pb-4">Bienvenue sur <span class="text-green-600">GoResto</span></h1>
+            <div class="subtitle text-2xl">Votre plateforme de recensement de restaurant régionnal</div>
+        </div>
+        <div class="container-btn flex justify-center gap-x-4">
+            <a href="#s2" class="btn-1">
+                <span class="btn-text">Découvrir les restaurants</span>
+            </a>
+            <a href="#s3" class="btn-2">
+                <span class="btn-text">Découvrir les villes</span>
+            </a>
+        </div>
+    </section>
+    <section class="section-restaurants py-24 px-32 " id="s2">
+        <div class="container-title pb-12">
+            <h2 class="text-4xl font-bold">Nos restaurants partenaires 🟢</h2>
+        </div>
+        <div class="container-restaurants flex flex-wrap justify-between gap-y-8">
+            {% for restaurant in restaurants %}
+                <article class=" px-4 py-5 rounded-lg hover:shadow-lg transition-shadow">
+                    <a href="{{ path('app_restaurant', {nom: restaurant.nom}) }}">
+                        <div class="container-img">
+                            <img class="rounded" src="{{ restaurant.image }}" alt="">
+                        </div>
+                        <h2 class="text-green-300 font-bold text-3xl py-2">{{ restaurant.nom }}</h2>
+                        <div class="container-infos pt-">
+                            <div class="name text-sm"><span class="text-green-600">Propriétaire : </span>{{ restaurant.proprietaire.nom }} {{ restaurant.proprietaire.prenom }}</div>
+                            <div class="city text-sm"><span class="text-green-600">Adresse : </span>{{ restaurant.adresse }}, {{ restaurant.ville.nom }}</div>
+                        </div>
+                    </a>
+                </article>
+            {% endfor %}
+        </div>
+    </section>
+    <section class="section-villes py-24 px-32 bg-green-600" id="s2">
+        <div class="container-title pb-12">
+            <h2 class="text-4xl font-bold text-white">Nos villes partenaires ⚫️</h2>
+        </div>
+        <div class="container-villes flex flex-wrap justify-between gap-y-8" id="s3">
+            {% for ville in villes %}
+                <article class="flex justify-start p-4 rounded-lg hover:shadow-lg transition-shadow bg-white">
+                    <a class="w-full" href="{{ path('app_villeRestaurant', {nom: ville.nom}) }}">
+                        <h3 class="text-xl">{{ ville.nom }}</h3>
+                    </a>
+                </article>
+            {% endfor %}
+        </div>
+    </section>
+{% endblock %}

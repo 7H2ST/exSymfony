@@ -1,0 +1,26 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <section class="section-presentation min-h-screen pt-32 pb-8 px-32">
+        <h1 class="text-6xl font-bold pb-8">{{ restaurant.nom }}</h1>
+        <div class="presentation flex">
+            <div class="container-img w-1/2">
+                <img src="{{ restaurant.image }}" alt="">
+            </div>
+            <div class="content w-1/2 flex flex-col justify-between pl-8">
+                <div class="container-infos pb-4">
+                    <div class="name"><span class="text-green-600">Propriétaire : </span>{{ restaurant.proprietaire.nom }} {{ restaurant.proprietaire.prenom }}</div>
+                    <div class="city"><span class="text-green-600">Adresse : </span>{{ restaurant.adresse }}, {{ restaurant.ville.nom }}</div>
+                </div>
+                <div class="container-text pb-4">
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eos consequatur est minima deleniti aperiam atque illum distinctio cupiditate quia nemo nam dicta accusamus autem, delectus soluta! Expedita qui eos dolor repellendus atque quas et. Assumenda sunt dignissimos et modi voluptate dolorum. Reprehenderit voluptate aut ipsum perspiciatis, incidunt ut fuga vel, ullam dolore aperiam rem deserunt eveniet, laborum iure quidem doloremque velit qui ab minus</p>
+                    <hr class="my-6 border-gray-300">
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eos consequatur est minima deleniti aperiam atque illum distinctio cupiditate quia nemo nam dicta accusamus autem, delectus soluta! Expedita qui eos dolor repellendus atque quas et. Assumenda sunt dignissimos et modi voluptate dolorum. Reprehenderit voluptate aut ipsum perspiciatis, incidunt ut fuga vel, ullam dolore aperiam rem deserunt eveniet, laborum iure quidem doloremque velit qui ab minus</p>
+                </div>
+                <div class="container-link">
+                    <a href="" class="link text-green-600">Visualiser la carte 📋</a>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}

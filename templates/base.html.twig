@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html class="scroll-smooth">
+    <head>
+        <meta charset="UTF-8">
+        <title>{% block title %}GoResto{% endblock %}</title>
+        {% block stylesheets %}
+        <link rel="stylesheet" href="/css/home.css">
+        {% endblock %}
+        <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>🟢</text></svg>">
+        {# Run `composer require symfony/webpack-encore-bundle` to start using Symfony UX #}
+        <script src="https://cdn.tailwindcss.com"></script>
+        <script>
+            tailwind.config = {
+            theme: {
+                extend: {
+                colors: {
+                    clifford: '#da373d',
+                }
+                }
+            }
+            }
+        </script>
+        <style type="text/tailwindcss">
+            @layer utilities {
+            .content-auto {
+                content-visibility: auto;
+            }
+            }
+        </style>
+    </head>
+    <body>
+        <header class="fixed bg-white overflow-hidden">
+            <div class="w-screen mx-auto">
+                <div class="relative z-10 bg-white">
+                    <div>
+                        <div class="relative py-4 px-32">
+                            <nav class="relative flex items-center justify-between" aria-label="Global">
+                                <div class="flex items-center flex-grow flex-shrink-0 lg:flex-grow-0">
+                                    <div>
+                                        <a class="flex items-center space-x-4 justify-between w-full md:w-auto" href="/">
+                                            <img alt="Workflow" class="h-8 w-auto sm:h-10" src="https://tailwindui.com/img/logos/workflow-mark.svg?color=green&shade=600">
+                                            <span class="font-bold text-xl">GoResto</span>
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="ml-10 pr-4 space-x-8">
+                                    <a href="/#s2" class="font-medium text-gray-500 hover:text-gray-900">Restaurants</a>
+                                    <a href="/#s3" class="font-medium text-gray-500 hover:text-gray-900">Villes</a>
+                                    {% if not app.user %}
+                                    <a href="{{ path('app_inscription')}}" class="font-medium text-green-600 hover:text-green-500">Inscription</a>
+                                    <a href="{{ path('app_connexion')}}" class="font-medium text-green-600 hover:text-green-500">Connexion</a>
+                                    {% else %}
+                                    <a href="{{ path('app_proprietaire')}}" class="font-medium text-green-600 hover:text-green-500">Mon profil</a>
+                                    <a href="{{ path('app_deconnexion')}}" class="font-medium text-green-600 hover:text-green-500">Deconnexion</a>
+                                    {% endif %}
+                                </div>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+        {% block body %}{% endblock %}
+        <footer class="py-8 px-32 bg-white">
+            <div class="flex items-center justify-between pb-6">
+                <a class="flex items-center space-x-4 justify-between w-full md:w-auto" href="/">
+                    <img alt="Workflow" class="h-8 w-auto sm:h-10" src="https://tailwindui.com/img/logos/workflow-mark.svg?color=green&shade=600">
+                    <span class="font-bold text-xl">GoResto</span>
+                </a>
+                <ul class="flex flex-wrap items-center mb-2 text-md">
+                    <li>
+                        <a href="/#s2" class="mr-6 text-gray-500">Restaurants</a>
+                    </li>
+                    <li>
+                        <a href="/#s3" class="mr-6 text-gray-500">Villes</a>
+                    </li>
+                    {% if not app.user %}
+                    <li>
+                        <a href="{{ path('app_inscription')}}" class="mr-6 text-green-600">Inscription</a>
+                    </li>
+                    <li>
+                        <a href="{{ path('app_connexion')}}" class="text-green-600">Connexion</a>
+                    </li>
+                    {% else %}
+                    <li>
+                        <a href="{{ path('app_proprietaire')}}" class="mr-6 text-green-600">Mon profil</a>
+                    </li>
+                    <li>
+                        <a href="{{ path('app_deconnexion')}}" class="text-green-600">Deconnexion</a>
+                    </li>
+                    {% endif %}
+                </ul>
+            </div>
+            <hr class="my-6 border-gray-300">
+            <span class="block text-sm text-gray-500 sm:text-center">© 2022 <a href="/" class="hover:underline">GoResto</a>. All Rights Reserved.
+            </span>
+        </footer>
+
+    </body>
+</html>
